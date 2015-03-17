@@ -39,7 +39,6 @@ describe('Messages', function() {
       var name = messages.builder.commandsMap[command];
       it('message.' + name, function(done) {
         should.exist(messages[name]);
-        messages[name].super_.should.equal(Messages.Message);
         var message = messages[name]();
         should.exist(message);
         message.should.be.instanceof(messages[name]);
