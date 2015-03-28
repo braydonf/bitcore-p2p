@@ -132,4 +132,36 @@ describe('Command Messages', function() {
 
   });
 
+  describe('Version', function() {
+    it('should set the default relay property as true', function() {
+      var message = messages.Version();
+      should.exist(message.relay);
+      message.relay.should.equal(true);
+    });
+    it('should set the relay as false', function() {
+      var message = messages.Version({relay: false});
+      should.exist(message.relay);
+      message.relay.should.equal(false);
+    });
+    it('should set the relay as true', function() {
+      var message = messages.Version({relay: true});
+      should.exist(message.relay);
+      message.relay.should.equal(true);
+    });
+  });
+
+  describe('Default Magic Number', function() {
+
+    Object.keys(commandsMap).forEach(function(command) {
+      it(command, function() {
+        var messageConstructor = require('../../../lib/messages/commands/' + command)({});
+        var message = new messageConstructor();
+        var defaultMagic = bitcore.Networks.defaultNetwork.networkMagic.readUInt32LE(0);
+        message.magicNumber.should.equal(defaultMagic);
+      });
+>>>>>>> bug/version-constructor-relay
+    });
+
+  });
+
 });
