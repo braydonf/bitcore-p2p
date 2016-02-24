@@ -28,6 +28,13 @@ describe('Command Messages', function() {
         port: 1234
       }]);
     });
+
+    it('should set payload', function() {
+      var message = messages.Addresses();
+      var payload = new Buffer('012ae9cd56010000000000000000000000000000000000ffff80087c07479d00000000', 'hex');
+      message.setPayload(payload);
+    });
+
   });
 
   describe('Alert', function() {
